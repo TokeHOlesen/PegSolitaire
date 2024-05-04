@@ -223,7 +223,7 @@ class InitializeButtons:
         this_btn = menu[btn_name]
         button_kwargs = {
             "target_surface": self.gfx.display,
-            "res_multi": self.gfx.RES_MULTI,
+            "res_multi": self.gfx.scaling_factor,
             "command": this_btn["command"],
             "coords": (this_btn["btn_x_pos"], this_btn["btn_y_pos"]),
             "text": this_btn["text"][self.options.lang],
@@ -267,18 +267,18 @@ class InitializeToggles:
         self.snd = snd_object
         self.options = options_object
         self.methods = toggle_methods
-        self.sound = Toggle(self.gfx.display, (240, 68), self.gfx.RES_MULTI, self.gfx.toggle_off,
+        self.sound = Toggle(self.gfx.display, (240, 68), self.gfx.scaling_factor, self.gfx.toggle_off,
                             self.gfx.toggle_on, is_on=self.options.play_sounds,
                             click_sound=self.snd.toggle_press,
                             options=self.options)
-        self.highlight = Toggle(self.gfx.display, (240, 98), self.gfx.RES_MULTI, self.gfx.toggle_off,
+        self.highlight = Toggle(self.gfx.display, (240, 98), self.gfx.scaling_factor, self.gfx.toggle_off,
                                 self.gfx.toggle_on, is_on=self.options.show_highlights,
                                 click_sound=self.snd.toggle_press, options=self.options)
-        self.english = Toggle(self.gfx.display, (136, 128), self.gfx.RES_MULTI, self.gfx.en_toggle_off,
+        self.english = Toggle(self.gfx.display, (136, 128), self.gfx.scaling_factor, self.gfx.en_toggle_off,
                               self.gfx.en_toggle_on, is_on=(self.options.lang == "en"),
                               command=self.methods["english_toggle_pressed"], click_sound=self.snd.toggle_press,
                               options=self.options, is_radio=True)
-        self.polski = Toggle(self.gfx.display, (208, 128), self.gfx.RES_MULTI, self.gfx.pl_toggle_off,
+        self.polski = Toggle(self.gfx.display, (208, 128), self.gfx.scaling_factor, self.gfx.pl_toggle_off,
                              self.gfx.pl_toggle_on, is_on=(self.options.lang == "pl"),
                              command=self.methods["polski_toggle_pressed"], click_sound=self.snd.toggle_press,
                              options=self.options, is_radio=True)

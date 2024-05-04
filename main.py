@@ -1,4 +1,5 @@
 import pickle
+import argparse
 from sys import exit
 from enum import Enum, auto
 import layouts
@@ -10,8 +11,13 @@ from ui_elements import InitializeButtons, InitializeDialogWindows, InitializeTo
 
 
 def main():
+    # Processes command line arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-s", "--scale", type=int, choices=range(1, 11), default=3,
+                        help="Sets the scaling factor. Must be a value between 1 and 10.")
+    args = parser.parse_args()
     # Instantiates a Game object.
-    game = Game()
+    game = Game(args)
     # Starts the game.
     game.game_loop()
 
@@ -26,7 +32,7 @@ class Game:
         REALLY_QUIT = auto()
         REALLY_RESET = auto()
 
-    def __init__(self):
+    def __init__(self, args):
         # Instantiates a clock.
         self.clock = pygame.time.Clock()
         # Loads settings from options.dat; If not successful, loads defaults.
@@ -35,9 +41,10 @@ class Game:
                 self.options = pickle.load(in_file)
         except (OSError, pickle.UnpicklingError):
             self.options = Options("en", True, True)
-        # Loads graphics
-        self.gfx = Graphics(self.options.lang)
-        # Loads sounds
+        # Sets the scaling factor and loads graphics.
+        scaling_factor = args.scale
+        self.gfx = Graphics(self.options.lang, scaling_factor)
+        # Loads sounds.
         self.snd = Sounds()
         # Sets default state to MAIN_MENU.
         self.state = self.GameStates.MAIN_MENU
@@ -46,7 +53,7 @@ class Game:
                            self.gfx.board_surface,
                            self.gfx.display,
                            self.gfx.BOARD_POS,
-                           self.gfx.RES_MULTI,
+                           self.gfx.scaling_factor,
                            self.gfx.tile_smooth,
                            self.gfx.tile_hole,
                            self.gfx.peg,

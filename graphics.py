@@ -17,17 +17,16 @@ class Graphics:
     # Before blitting on screen, display will be scaled up by RES_MULTI.
     DISPLAY_WIDTH = 320
     DISPLAY_HEIGHT = 240
-    # Resolution multiplier.
-    RES_MULTI = 3
     # Colors for rendering text
     TEXT_WHITE = "#EEEEEE"
     TEXT_RED = "#11FF11"
     TEXT_GREEN = "#FF1916"
 
-    def __init__(self, lang):
+    def __init__(self, lang, res_multi):
         """Loads the graphics and initializes the graphics variables."""
         # Display variables
-        self.screen_res = (self.DISPLAY_WIDTH * self.RES_MULTI, self.DISPLAY_HEIGHT * self.RES_MULTI)
+        self.scaling_factor = res_multi
+        self.screen_res = (self.DISPLAY_WIDTH * self.scaling_factor, self.DISPLAY_HEIGHT * self.scaling_factor)
         self.screen = pygame.display.set_mode(self.screen_res)
         self.display = pygame.Surface((self.DISPLAY_WIDTH, self.DISPLAY_HEIGHT))
         self.board_surface = pygame.Surface(self.BOARD_DIMENSIONS)

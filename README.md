@@ -52,8 +52,8 @@ minigame in a bigger project, without the need to alter the Board class' code.
 Since the game is rendered at a resolution of 320x240, it needs to be scaled up before displaying on a modern screen.
 This is achieved by blitting all game's graphics - the background, the board, the UI elements - to a "display" Pygame
 surface, which is scaled up before blitting on a "screen" surface, which is what actually gets displayed on the user's
-screen. The scaling factor is currently hard-coded as 3; allowing the user to change that value is a possible future
-consideration.
+screen. The scaling factor defaults to 3, but can be set to any value in the 1-10 range with the command line argument
+-s or --scale (for example, "python main.py --scale 5").
 
 Rendering the game at a scaled resolution made it necessary to correct mouse input values. Since Pygame's
 mouse.get_pos() function returns the cursor coordinates relative to "screen" (scaled) and not "display" (unscaled), it
@@ -126,8 +126,7 @@ vector, which is a normalized direction vector multiplied by the speed, defined 
 #### Graphics.py
 
 Describes the Graphics class which, upon initialization, loads graphical files and generates other graphical assets.
-It also describes the game's graphical constants, such as, among other, the resolution, target framerate and scaling
-factor.
+It also describes the game's graphical constants, such as, among other, the resolution and target framerate.
 
 All graphical assets used by the game are properties of an object of the Graphics class, which in the Game class is
 instantiated as .gfx, as a property of that class. That object is passed to other objects' constructors as an argument,
