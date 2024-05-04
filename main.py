@@ -41,9 +41,8 @@ class Game:
                 self.options = pickle.load(in_file)
         except (OSError, pickle.UnpicklingError):
             self.options = Options("en", True, True)
-        # Sets the scaling factor and loads graphics.
-        scaling_factor = args.scale
-        self.gfx = Graphics(self.options.lang, scaling_factor)
+        # Loads graphics.
+        self.gfx = Graphics(self.options.lang, args.scale)
         # Loads sounds.
         self.snd = Sounds()
         # Sets default state to MAIN_MENU.
