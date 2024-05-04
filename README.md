@@ -1,6 +1,9 @@
 # PEG SOLITAIRE
 #### Author: Toke Henrik Olesen
 #### Video Demo: https://youtu.be/IX6GxPzVLLQ
+
+![Screenshot](./Assets/Graphics/screenshot.png)
+
 ### General description:
 
 Peg Solitaire is a simple puzzle game based on the popular single-player board game of the same name. Written in Python
