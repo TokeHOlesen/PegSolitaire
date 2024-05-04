@@ -1,2 +1,4 @@
 __pycache__
-.venv
+.venv/
+.idea/
+Assets/Sounds/.DS_Store
