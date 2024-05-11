@@ -1,4 +1,6 @@
 __pycache__
 .venv/
 .idea/
+build/
 Assets/Sounds/.DS_Store
+main.spec
