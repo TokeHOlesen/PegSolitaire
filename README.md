@@ -2,6 +2,8 @@
 #### Author: Toke Henrik Olesen
 #### Video Demo: https://youtu.be/IX6GxPzVLLQ
 
+#### Originally submitted as a final project for Harvard's CS50, hence the detailed Readme.
+
 ![Screenshot](./Assets/Graphics/screenshot.png)
 
 ### General description:
