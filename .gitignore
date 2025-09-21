@@ -5,3 +5,4 @@ build/
 Assets/Sounds/.DS_Store
 main.spec
 dist
+src/pegsolitaire.egg-info
