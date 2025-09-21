@@ -4,7 +4,7 @@
 
 #### Originally submitted as a final project for Harvard's CS50, hence the detailed Readme.
 
-![Screenshot](./Assets/Graphics/screenshot.png)
+![Screenshot](screenshot.png)
 
 ### General description:
 
