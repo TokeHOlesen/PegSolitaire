@@ -112,15 +112,16 @@ class Game:
     
     def get_options_file(self) -> Path:
         """
-        Checks if there is an options file in the user data path; if not, copies the default file into that location.
-        Returns the path to that file (either existing or newly copied one.)
+        Checks if there is an options file in the user data path; if not, creates a new file with default values.
+        Returns the path to that file.
         """
-        target_path = Path(user_data_dir(APP_NAME)) / "options.dat"
-        if not target_path.exists():
-            default_options_file = resources.files(APP_NAME).joinpath("Data/options.dat")
-            target_path.parent.mkdir(parents=True, exist_ok=True)
-            target_path.write_bytes(default_options_file.read_bytes())
-        return target_path
+        options_file_path = Path(user_data_dir(APP_NAME)) / "options.dat"
+        if not options_file_path.exists():
+            options_file_path.parent.mkdir(parents=True, exist_ok=True)
+            self.options = Options("en", True, True)
+            with options_file_path.open("wb") as out_file:
+                pickle.dump(self.options, out_file)
+        return options_file_path
 
     def switch_state(self, state: GameStates) -> None:
         """Changes the game state."""
