@@ -32,7 +32,7 @@ class Graphics:
         self.display = pygame.Surface((self.DISPLAY_WIDTH, self.DISPLAY_HEIGHT))
         self.board_surface = pygame.Surface(self.BOARD_DIMENSIONS)
         pygame.display.set_caption("Peg Solitaire")
-        pygame.display.set_icon(load_image("Graphics/icon.ico", convert_alpha=True))
+        pygame.display.set_icon(load_image("Graphics/icon-32.png", convert_alpha=True))
         
         # Fonts
         self.large_font = load_font("Graphics/Retron2000.ttf", 27)
