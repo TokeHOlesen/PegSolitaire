@@ -1,6 +1,7 @@
 import pygame
-import languages as langs
-from create_surface import create_simple_surface
+from . import languages as langs
+from .asset_loader import load_image, load_font
+from .create_surface import create_simple_surface
 
 
 class Graphics:
@@ -31,25 +32,26 @@ class Graphics:
         self.display = pygame.Surface((self.DISPLAY_WIDTH, self.DISPLAY_HEIGHT))
         self.board_surface = pygame.Surface(self.BOARD_DIMENSIONS)
         pygame.display.set_caption("Peg Solitaire")
-        pygame.display.set_icon(pygame.image.load("./Assets/Graphics/icon.ico").convert_alpha())
+        pygame.display.set_icon(load_image("Graphics/icon.ico", convert_alpha=True))
+        
         # Fonts
-        self.large_font = pygame.font.Font("./Assets/Graphics/Retron2000.ttf", 27)
-        self.small_font = pygame.font.Font("./Assets/Graphics/superstar_memesbruh03.ttf", 16)
+        self.large_font = load_font("Graphics/Retron2000.ttf", 27)
+        self.small_font = load_font("Graphics/superstar_memesbruh03.ttf", 16)
 
         # Game tiles
-        self.tile_smooth = pygame.image.load("Assets/Graphics/tile_smooth.png").convert()
-        self.tile_hole = pygame.image.load("Assets/Graphics/tile_hole.png").convert()
-        self.peg = pygame.image.load("Assets/Graphics/peg.png").convert_alpha()
-        self.highlight = pygame.image.load("Assets/Graphics/highlight.png").convert_alpha()
-        self.highlight_full = pygame.image.load("Assets/Graphics/highlight_full.png").convert_alpha()
-
+        self.tile_smooth = load_image("Graphics/tile_smooth.png")
+        self.tile_hole = load_image("Graphics/tile_hole.png")
+        self.peg = load_image("Graphics/peg.png", convert_alpha=True)
+        self.highlight = load_image("Graphics/highlight.png", convert_alpha=True)
+        self.highlight_full = load_image("Graphics/highlight_full.png", convert_alpha=True)
+        
         # Game background
-        self.background = pygame.image.load("Assets/Graphics/background.png").convert()
+        self.background = load_image("Graphics/background.png")
 
         # Main screen logo
         self.logo = {
-            "en": pygame.image.load("Assets/Graphics/logo_en.png").convert_alpha(),
-            "pl": pygame.image.load("Assets/Graphics/logo_pl.png").convert_alpha()
+            "en": load_image("Graphics/logo_en.png", convert_alpha=True),
+            "pl": load_image("Graphics/logo_pl.png", convert_alpha=True)
         }
 
         # Buttons

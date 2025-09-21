@@ -1,7 +1,7 @@
-import languages as langs
-from button_class import Button
-from dialog_window_class import DialogWindow
-from toggle_class import Toggle
+from . import languages as langs
+from .button_class import Button
+from .dialog_window_class import DialogWindow
+from .toggle_class import Toggle
 
 
 class InitializeButtons:
@@ -21,7 +21,7 @@ class InitializeButtons:
                 "btn_x_pos": 60,
                 "btn_y_pos": 88,
                 "text": langs.play,
-                "font_type": "./Assets/Graphics/Retron2000.ttf",
+                "font_type": "Graphics/Retron2000.ttf",
                 "font_size": 27,
                 "text_y_offset": -5
             },
@@ -32,7 +32,7 @@ class InitializeButtons:
                 "btn_x_pos": 60,
                 "btn_y_pos": 128,
                 "text": langs.settings,
-                "font_type": "./Assets/Graphics/Retron2000.ttf",
+                "font_type": "Graphics/Retron2000.ttf",
                 "font_size": 27,
                 "text_y_offset": -5
             },
@@ -43,7 +43,7 @@ class InitializeButtons:
                 "btn_x_pos": 60,
                 "btn_y_pos": 168,
                 "text": langs.quit_game,
-                "font_type": "./Assets/Graphics/Retron2000.ttf",
+                "font_type": "Graphics/Retron2000.ttf",
                 "font_size": 27,
                 "text_y_offset": -5
             }
@@ -195,7 +195,7 @@ class InitializeButtons:
         self.defaults = {
             "click_sound": self.snd.button_press,
             "is_active": True,
-            "font_type": "./Assets/Graphics/superstar_memesbruh03.ttf",
+            "font_type": "Graphics/superstar_memesbruh03.ttf",
             "font_size": 16,
             "text_color": "#EEEEEE",
             "inactive_text_color": "#999999",

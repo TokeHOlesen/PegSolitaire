@@ -2,12 +2,17 @@ import pickle
 import argparse
 from sys import exit
 from enum import Enum, auto
-import layouts
-from sounds import *
-from board_class import Board
-from graphics import *
-from options import Options
-from ui_elements import InitializeButtons, InitializeDialogWindows, InitializeToggles
+from importlib import resources
+from platformdirs import user_data_dir
+from pathlib import Path
+from . import layouts
+from .sounds import *
+from .board_class import Board
+from .graphics import *
+from .options import Options
+from .ui_elements import InitializeButtons, InitializeDialogWindows, InitializeToggles
+
+APP_NAME = "pegsolitaire"
 
 
 def main():
@@ -37,7 +42,7 @@ class Game:
         self.clock = pygame.time.Clock()
         # Loads settings from options.dat; If not successful, loads defaults.
         try:
-            with open("./options.dat", "rb") as in_file:
+            with self.get_options_file().open("rb") as in_file:
                 self.options = pickle.load(in_file)
         except (OSError, pickle.UnpicklingError):
             self.options = Options("en", True, True)
@@ -104,6 +109,18 @@ class Game:
         self.buttons = InitializeButtons(self.gfx, self.snd, self.options, self.button_methods)
         self.dialog_windows = InitializeDialogWindows(self.gfx, self.options)
         self.toggles = InitializeToggles(self.gfx, self.snd, self.options, self.toggle_methods)
+    
+    def get_options_file(self) -> Path:
+        """
+        Checks if there is an options file in the user data path; if not, copies the default file into that location.
+        Returns the path to that file (either existing or newly copied one.)
+        """
+        target_path = Path(user_data_dir(APP_NAME)) / "options.dat"
+        if not target_path.exists():
+            default_options_file = resources.files(APP_NAME).joinpath("Data/options.dat")
+            target_path.parent.mkdir(parents=True, exist_ok=True)
+            target_path.write_bytes(default_options_file.read_bytes())
+        return target_path
 
     def switch_state(self, state: GameStates) -> None:
         """Changes the game state."""
@@ -130,7 +147,7 @@ class Game:
         self.options.lang = "en" if self.toggles.english.is_on else "pl"
         # Updates options.dat with the new settings.
         try:
-            with open("./options.dat", "wb") as out_file:
+            with self.get_options_file().open("wb") as out_file:
                 pickle.dump(self.options, out_file)
         except (OSError, pickle.PicklingError):
             pass

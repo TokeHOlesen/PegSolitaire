@@ -1,0 +1,2 @@
+[console_scripts]
+pegsolitaire = pegsolitaire.__main__:main

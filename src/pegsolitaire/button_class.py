@@ -1,4 +1,5 @@
 import pygame
+from .asset_loader import load_font
 
 
 class Button(pygame.sprite.Sprite):
@@ -71,7 +72,7 @@ class Button(pygame.sprite.Sprite):
         }
         self._x_offset = text_x_offset
         self._y_offset = text_y_offset
-        self._font = pygame.font.Font(font_type, size=font_size)
+        self._font = load_font(font_type, size=font_size)
         self._is_pressed = False
         self.active_condition = active_condition
 

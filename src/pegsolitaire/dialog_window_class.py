@@ -1,4 +1,5 @@
 import pygame
+from .asset_loader import load_font
 
 
 class DialogWindow(pygame.sprite.Sprite):
@@ -8,7 +9,7 @@ class DialogWindow(pygame.sprite.Sprite):
                  surface: pygame.surface.Surface,
                  pos: tuple[int, int],
                  gfx_dialog_window: pygame.surface.Surface,
-                 font="./Assets/Graphics/superstar_memesbruh03.ttf",
+                 font="Graphics/superstar_memesbruh03.ttf",
                  font_size=16):
         """
         :param message: The text to display.
@@ -26,7 +27,7 @@ class DialogWindow(pygame.sprite.Sprite):
         # Creates a "shadow" surface the same size as the dialog window, and makes it dark grey.
         self.shadow = pygame.Surface((self.rect.width, self.rect.height))
         self.shadow.fill("#333333")
-        self.message_font = pygame.font.Font(font, font_size)
+        self.message_font = load_font(font, font_size)
         self.message = self.message_font.render(message, False, "#EEEEEE")
         self.message_x_pos = self.rect.x + self.rect.width // 2 - self.message.get_width() // 2
 

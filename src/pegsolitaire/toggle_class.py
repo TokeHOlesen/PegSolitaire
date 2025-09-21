@@ -1,5 +1,5 @@
 import pygame
-from options import Options
+from .options import Options
 
 
 class Toggle(pygame.sprite.Sprite):

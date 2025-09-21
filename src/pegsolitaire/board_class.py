@@ -1,5 +1,5 @@
 import pygame.surface
-from board_tiles_class import *
+from .board_tiles_class import *
 
 
 class Board:

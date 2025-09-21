@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pegsolitaire"
+version = "1.0.0"
+readme = "README.md"
+description = "A simple Peg Solitaire game, written in Python."
+keywords = ["peg", "solitaire", "game"]
+requires-python = ">=3.9"
+authors = [{ name = "Toke Henrik Olesen" }]
+classifiers = ["Programming Language :: Python :: 3"]
+dependencies = ["pygame-ce>=2.5.0", "platformdirs>=4.4.0"]
+
+[project.scripts]
+pegsolitaire = "pegsolitaire.__main__:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+pegsolitaire = ["assets/**/*"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
